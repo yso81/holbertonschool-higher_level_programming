@@ -6,7 +6,5 @@ def uppercase(str):
             result += chr(ord(c) - 32)
         else:
             result += c
-    print(result)
-
-uppercase("best")
-uppercase("Best")
+    print("{}".format(result))
+    
