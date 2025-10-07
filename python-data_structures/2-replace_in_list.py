@@ -21,5 +21,5 @@ if __name__ == "__main__":
     idx = 1
     new_list = replace_in_list([6, 7, 8, 9, 10], 1, 8)
 
-print(new_list)
-print(my_list)
+#print(new_list)
+#print(my_list)
