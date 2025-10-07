@@ -4,7 +4,7 @@ def replace_in_list(my_list, idx, element):
         return my_list
     if idx > len(my_list):
         return my_list
-    if len(my_list) == 1:
+    if len(my_list) == idx:
         return my_list
 
     # for current_index in range(len(my_list)):
@@ -18,8 +18,8 @@ def replace_in_list(my_list, idx, element):
 if __name__ == "__main__":
     my_list = [1, 2, 3, 4, 5]
     new_element = 9
-    idx = 1
-    new_list = replace_in_list([6, 7, 8, 9, 10], 1, 8)
+    idx = 3
+    new_list = replace_in_list(my_list, idx, new_element)
 
 #print(new_list)
 #print(my_list)
