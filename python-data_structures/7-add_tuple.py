@@ -25,7 +25,7 @@ def add_tuple(tuple_a=(), tuple_b=()):
     
     #result = tuple(tuple_a[i] + tuple_b[i] for i in range(len(tuple_a)))
     #return result
-if __name__ == "__main__"
+if __name__ == "__main__":
     #tuple_a = (1, 89)
     #tuple_b = (88, 11)
     #new_tuple = add_tuple(tuple_a, tuple_b)
