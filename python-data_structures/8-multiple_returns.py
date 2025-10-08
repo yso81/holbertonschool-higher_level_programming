@@ -2,17 +2,19 @@
 
 def multiple_returns(sentence):
     length = len(sentence)
-    first = sentence[0]
-    if len(sentence) == 0:
-        print("none")
-    else:
-        result = [length, first]
 
-    return result
+    if length == 0:
+        first = None
+    else:
+        first = sentence[0]
+    
+    return (length, first)
 
 
 if __name__ == "__main__":
 
-    sentence = "At school, I learnt C!"
+    #sentence = "At school, I learnt C!"
+    #length, first = multiple_returns(sentence)
+    sentence = ""
     length, first = multiple_returns(sentence)
     print("Length: {:d} - First character: {}".format(length, first))
