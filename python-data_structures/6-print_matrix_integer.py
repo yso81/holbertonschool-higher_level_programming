@@ -7,13 +7,13 @@ def print_matrix_integer(matrix=[[]]):
         # print()
 
 
-if __name__ == "__main__":
-
-    matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
+# if __name__ == "__main__":
+# 
+#     matrix = [
+#     [1, 2, 3],
+#     [4, 5, 6],
+#     [7, 8, 9]
+# ]
 
 # print_matrix_integer(matrix)
 # print("--")
