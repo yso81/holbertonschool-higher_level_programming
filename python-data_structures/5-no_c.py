@@ -12,3 +12,4 @@ if __name__ == "__main__":
     my_string = "hello cunts C you !"
 
     print(no_c(my_string))
+    
