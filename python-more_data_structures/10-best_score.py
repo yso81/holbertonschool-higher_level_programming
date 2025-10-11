@@ -3,8 +3,8 @@ def best_score(a_dictionary):
     if a_dictionary is None or not a_dictionary:
         return None
     else:
-    result = max(a_dictionary, key=a_dictionary.get)
-    return result
+        result = max(a_dictionary, key=a_dictionary.get)
+        return result
 
 
 if __name__ == "__main__":
