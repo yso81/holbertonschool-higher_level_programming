@@ -7,11 +7,14 @@ def roman_to_int(roman_string):
 
     sum = 0
     for i in range(len(roman_string)):
-        current_value = roman_map[roman_string[i]]
-        if i + 1 < len(roman_string) and current_value < roman_map[roman_string[i+1]]:
-            sum -= current_value
+        if roman_string is None or not roman_string:
+            return None
         else:
-            sum += current_value
+            current_value = roman_map[roman_string[i]]
+            if i + 1 < len(roman_string) and current_value < roman_map[roman_string[i+1]]:
+                sum -= current_value
+            else:
+                sum += current_value
     return sum
 
 
