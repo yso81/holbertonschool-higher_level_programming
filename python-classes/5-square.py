@@ -3,6 +3,7 @@
 This module creates a Square class.
 """
 
+
 class Square:
     """
     Defines a square class with Private instance attribute: Size
@@ -15,6 +16,7 @@ class Square:
         Args: Size
 
         """
+    
         self.__size = size
 
     @property
@@ -22,6 +24,7 @@ class Square:
         """
         Retrieves the size of the square.
         """
+    
         return self.__size
 
     @size.setter
@@ -33,6 +36,7 @@ class Square:
         Type error: if size is not an integer
         Value error: if size is less than 0.
         """
+    
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
@@ -43,6 +47,7 @@ class Square:
         """
         Calculate the area of the current square.
         """
+    
         return self.__size ** 2
     
     def my_print(self):
@@ -50,6 +55,7 @@ class Square:
         prints in stdout the square with the character #
         if size is 0, prints an empty line.
         """
+    
         if self.__size == 0:
             print()
         else: 
