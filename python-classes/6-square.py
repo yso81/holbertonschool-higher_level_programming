@@ -46,6 +46,7 @@ class Square:
             raise ValueError("size must be >= 0")
         self.__size = value
 
+    @property
     def position(self):
         """
         retrieves the position of the sqaure.
@@ -90,6 +91,7 @@ class Square:
 
         if self.__size == 0:
             print()
+            return
 
         for row in range(self.__position[1]):
             print("")
