@@ -3,21 +3,22 @@
 This module creates a Square class.
 """
 
+
 class Square:
     """
     Defines a square class with Private instance attribute: Size
     """
-    
-    def __init__(self, size=0, position=(0,0)):
+
+    def __init__(self, size=0, position=(0, 0)):
         """
         Initialises a New square instance.
 
-        Args: 
+        Args :
         Size : The size of the square.
         position (tuple): the position of the square (x,y)
 
         """
-    
+
         self.__size = size
         self.__position = position
 
@@ -26,7 +27,7 @@ class Square:
         """
         Retrieves the size of the square.
         """
-    
+
         return self.__size
 
     @size.setter
@@ -38,33 +39,33 @@ class Square:
         Type error: if size is not an integer
         Value error: if size is less than 0.
         """
-    
+
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
-    
+
     def position(self):
         """
         retrieves the position of the sqaure.
 
         returns the tuple(x, y) of the square position.
         """
-    
+
         return self.__position
-    
+
     def position(self, value):
         """
         sets the position of the square.
 
-        Args: 
+        Args:
         Value (tuple):  new position ofthe square (x, y)
 
         Raises:
         TypeError: If value is not a tuple having 2 integers.
         """
-    
+
         if not isinstance(value, tuple) or len(value) != 2 or \
            not all(isinstance(i, int) for i in value) or \
            not all(i >= 0 for i in value):
@@ -75,9 +76,9 @@ class Square:
         """
         Calculate the area of the current square.
         """
-    
+
         return self.__size ** 2
-    
+
     def my_print(self):
         """
         prints in stdout the square with the character #
@@ -85,7 +86,7 @@ class Square:
 
         Handles size 0 and position of square.
         """
-    
+
         if self.__size == 0:
             print()
 
