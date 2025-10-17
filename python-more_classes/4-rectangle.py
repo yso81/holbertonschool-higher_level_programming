@@ -89,7 +89,7 @@ class Rectangle:
 
     def __str__(self):
         """
-        Returns a string representation of the rectangle using the '#' character.
+        Returns a string representation of the rectangle using the "#"
         Returns an empty string if width or height is 0.
         """
         if self.__width == 0 or self.__height == 0:
@@ -105,3 +105,30 @@ class Rectangle:
         Returns a string representation that can recreate the object.
         """
         return "Rectangle({}, {})".format(self.__width, self.__height)
+
+
+if __name__ == "__main__":
+
+    my_rectangle = Rectangle(2, 4)
+    print(str(my_rectangle))
+    print("--")
+    print(my_rectangle)
+    print("--")
+    print(repr(my_rectangle))
+    print("--")
+    print(hex(id(my_rectangle)))
+    print("--")
+
+    # create new instance based on representation
+    new_rectangle = eval(repr(my_rectangle))
+    print(str(new_rectangle))
+    print("--")
+    print(new_rectangle)
+    print("--")
+    print(repr(new_rectangle))
+    print("--")
+    print(hex(id(new_rectangle)))
+    print("--")
+
+    print(new_rectangle is my_rectangle)
+    print(type(new_rectangle) is type(my_rectangle))
