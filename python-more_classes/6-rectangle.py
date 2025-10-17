@@ -27,7 +27,6 @@ class Rectangle:
         self.height = height
 
         Rectangle.number_of_instances += 1
-        print(f"Rectangle instance created. Total instances: {Rectangle.number_of_instances}")
 
     @property
     def width(self):
@@ -120,8 +119,6 @@ class Rectangle:
         print("Bye rectangle...")
 
         Rectangle.number_of_instances -= 1
-        print(f"Rectangle instance deleted. Total instances: {Rectangle.number_of_instances}")
-
 
 if __name__ == "__main__":
 
