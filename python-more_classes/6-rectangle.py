@@ -120,6 +120,7 @@ class Rectangle:
 
         Rectangle.number_of_instances -= 1
 
+
 if __name__ == "__main__":
 
     my_rectangle_1 = Rectangle(2, 4)
