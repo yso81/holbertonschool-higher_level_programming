@@ -96,7 +96,7 @@ class Rectangle:
 
     def __str__(self):
         """
-        Returns a string representation of the rectangle using the print_symbol.
+        Returns a string representation of the rectangle using the print_symbol
         Returns an empty string if width or height is 0.
         """
         if self.__width == 0 or self.__height == 0:
