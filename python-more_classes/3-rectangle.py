@@ -89,8 +89,8 @@ class Rectangle:
 
     def __str__(self):
         """
-        Returns a string representation of the rectangle using the '#' character.
-        Returns an empty string if width or height is 0.
+        Returns a string representation of the rectangle using the "#"
+        Returns an empty string if width or height is 0
         """
         if self.__width == 0 or self.__height == 0:
             return ""
@@ -104,7 +104,9 @@ class Rectangle:
 if __name__ == "__main__":
 
     my_rectangle = Rectangle(2, 4)
-    print("Area: {} - Perimeter: {}".format(my_rectangle.area(), my_rectangle.perimeter()))
+    print(
+        "Area: {} - Perimeter: {}".format(my_rectangle.area(
+        ), my_rectangle.perimeter()))
 
     print(str(my_rectangle))
     print(repr(my_rectangle))
@@ -115,4 +117,3 @@ if __name__ == "__main__":
     my_rectangle.height = 3
     print(my_rectangle)
     print(repr(my_rectangle))
-    
