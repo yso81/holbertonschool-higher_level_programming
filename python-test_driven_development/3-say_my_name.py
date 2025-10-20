@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+function that prints a square with the character #
+"""
+
+
 def say_my_name(first_name, last_name=""):
     """
     Prints My name is <first name> <last name>
