@@ -3,6 +3,7 @@
 A class named BaseGeometry with an unimplemented area method
 """
 
+
 class BaseGeometry:
     """
     Includes an area method that raises an Exception if not implemented by a subclass
