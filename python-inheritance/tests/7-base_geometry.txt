@@ -2,52 +2,37 @@
 
 >>> bg = BaseGeometry()
 
+>>> bg.integer_validator("my_int", 12)
+>>> bg.integer_validator("width", 89)
+
+>>> try:
+...     bg.integer_validator("name", "John")
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] name must be an integer
+
+>>> try:
+...     bg.integer_validator("age", 0)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[ValueError] age must be greater than 0
+
+>>> try:
+...     bg.integer_validator("distance", -4)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[ValueError] distance must be greater than 0
+
+>>> # Test a combination of type and value error to ensure order
+>>> try:
+...     bg.integer_validator("combo", 0.5)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] combo must be an integer
+
+>>> # Test area method again
 >>> try:
 ...     bg.area()
 ... except Exception as e:
 ...     print(f"[{e.__class__.__name__}] {e}")
 [Exception] area() is not implemented
-
->>> try:
-...     bg.integer_validator("value", 10)
-...     print("Validation successful for value=10")
-... except Exception as e:
-...     print(f"Validation failed for value=10: [{e.__class__.__name__}] {e}")
-Validation successful for value=10
-
->>> try:
-...     bg.integer_validator("my_int", 1)
-...     print("Validation successful for my_int=1")
-... except Exception as e:
-...     print(f"Validation failed for my_int=1: [{e.__class__.__name__}] {e}")
-Validation successful for my_int=1
-
->>> try:
-...     bg.integer_validator("width", 0)
-... except Exception as e:
-...     print(f"[{e.__class__.__name__}] {e}")
-[ValueError] width must be greater than 0
-
->>> try:
-...     bg.integer_validator("height", -5)
-... except Exception as e:
-...     print(f"[{e.__class__.__name__}] {e}")
-[ValueError] height must be greater than 0
-
->>> try:
-...     bg.integer_validator("size", "not an int")
-... except Exception as e:
-...     print(f"[{e.__class__.__name__}] {e}")
-[TypeError] size must be an integer
-
->>> try:
-...     bg.integer_validator("length", 10.5)
-... except Exception as e:
-...     print(f"[{e.__class__.__name__}] {e}")
-[TypeError] length must be an integer
-
->>> try:
-...     bg.integer_validator("age", True)
-... except Exception as e:
-...     print(f"[{e.__class__.__name__}] {e}")
-Validation successful for age=True
