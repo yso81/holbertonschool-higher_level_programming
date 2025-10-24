@@ -4,6 +4,10 @@ import math
 
 
 class Shape(abc.ABC):
+    """
+    Abstract that defines a shape
+    """
+
     @abc.abstractmethod
     def area(self):
         """
@@ -36,6 +40,9 @@ class Circle(Shape):
 
 
 class Rectangle(Shape):
+    """
+    Implementing the Rectangle subclass with area and perimeter method
+    """
     def __init__(self, width, height):
         if width <= 0 or height <= 0:
             raise ValueError("Width and height must be positive")
