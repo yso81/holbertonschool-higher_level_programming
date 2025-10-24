@@ -25,7 +25,6 @@ class Cat(Animal):
 
 
 if __name__ == "__main__":
-    print("--- Testing the Animal ABC and its subclasses ---")
 
     try:
         """
