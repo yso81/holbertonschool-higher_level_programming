@@ -66,7 +66,7 @@ def shape_info(shape):
 
 if __name__ == "__main__":
     from task_01_duck_typing import Circle, Rectangle, shape_info
-    
+
     circle = Circle(radius=5)
     rectangle = Rectangle(width=4, height=7)
 
