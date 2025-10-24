@@ -56,12 +56,12 @@ class Rectangle(Shape):
         return 2 * (self.width + self.height)
 
 
-def shape_info(shape_object):
+def shape_info(shape):
     """
     Accepts any object with the area() and perimeter() methods
     """
-    print(f"Area: {shape_object.area()}")
-    print(f"Perimeter: {shape_object.perimeter()}")
+    print(f"Area: {shape.area()}")
+    print(f"Perimeter: {shape.perimeter()}")
 
 
 if __name__ == "__main__":
