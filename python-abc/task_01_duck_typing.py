@@ -2,6 +2,7 @@
 import abc
 import math
 
+
 class Shape(abc.ABC):
     @abc.abstractmethod
     def area(self):
@@ -16,6 +17,7 @@ class Shape(abc.ABC):
         Abstract that defines the perimeter of a shape
         """
         pass
+
 
 class Circle(Shape):
     """
@@ -32,6 +34,7 @@ class Circle(Shape):
     def perimeter(self):
         return math.pi * self.radius * 2
 
+
 class Rectangle(Shape):
     def __init__(self, width, height):
         if width <= 0 or height <= 0:
@@ -44,6 +47,7 @@ class Rectangle(Shape):
 
     def perimeter(self):
         return 2 * (self.width + self.height)
+
 
 def shape_info(shape_object):
     """
