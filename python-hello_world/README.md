@@ -1,4 +1,3 @@
-holbertonschool-higher_level_programming
 Resources
 Read or watch:
 
