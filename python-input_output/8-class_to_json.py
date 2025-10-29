@@ -5,8 +5,8 @@
  object
  """
 
- 
- def class_to_json(obj):
+
+def class_to_json(obj):
     """
     Args:
         obj: An instance of a Class. All attributes of the obj Class are serializable:
