@@ -3,6 +3,7 @@
 Script that adds all arguments to a Python list, and then save them to a file
 """
 import json
+import sys
 
 
 def save_to_json_file(my_obj, filename):
