@@ -27,7 +27,7 @@ class Student:
         """
         Retrieves a dictionary representation of a Student instance
         Only attributes with simple data structures (list, dictionary, string,
-        integer, boolean) are included, mirroring the behavior of 
+        integer, boolean) are included, mirroring the behavior of
         class_to_json.py
 
         Returns:
