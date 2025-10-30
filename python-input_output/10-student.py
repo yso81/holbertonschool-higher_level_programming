@@ -36,7 +36,8 @@ class Student:
         """
         if attrs is None:
             return self.__dict__
-        elif isinstance(attrs, list) and all(isinstance(a, str) for a in attrs):
+        elif (isinstance(attrs, list) and
+                all(isinstance(a, str) for a in attrs)):
             filtered_dict = {}
             for attr in attrs:
                 if hasattr(self, attr):
