@@ -45,7 +45,7 @@ class Student:
             return filtered_dict
         else:
             return self.__dict__
-    
+
     def reload_from_json(self, json):
         for key, value in json.items():
             setattr(self, key, value)
@@ -58,4 +58,9 @@ if __name__ == "__main__":
     print(student_1)
     print(type(student_1))
     print(type(j_student_1))
-    print("{} {} {}".format(student_1.first_name, student_1.last_name, student_1.age))
+    print("{} {} {}".format(
+        student_1.first_name,
+        student_1.last_name,
+        student_1.age
+    )
+    )
