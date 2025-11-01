@@ -23,6 +23,7 @@ def serialize_to_xml(dictionary, filename):
     tree.write(filename, encoding="utf-8", xml_declaration=True)
     print(f"Dictionary serialized to {filename}")
 
+
 def deserialize_from_xml(filename):
     """
     Deserializes an XML file into a Python dictionary
@@ -52,7 +53,8 @@ def deserialize_from_xml(filename):
         print(f"Error: File '{filename}' not found.")
         return None
     except ET.ParseError:
-        print(f"Error: Could not parse XML from '{filename}'. Check file format.")
+        print(
+            f"Error: Could not parse XML from '{filename}'. Check file format.")
         return None
 
 
@@ -70,6 +72,7 @@ def main():
     deserialized_data = deserialize_from_xml(xml_file)
     print("\nDeserialized Data:")
     print(deserialized_data)
+
 
 if __name__ == "__main__":
     main()
