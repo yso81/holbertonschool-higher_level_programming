@@ -21,8 +21,6 @@ def serialize_to_xml(dictionary, filename):
 
     tree = ET.ElementTree(root)
     tree.write(filename, encoding="utf-8", xml_declaration=True)
-    print(f"Dictionary serialized to {filename}")
-
 
 def deserialize_from_xml(filename):
     """
@@ -47,7 +45,6 @@ def deserialize_from_xml(filename):
                     deserialized_dict[child.tag] = float(child.text)
                 except ValueError:
                     deserialized_dict[child.tag] = child.text
-        print(f"Dictionary deserialized from {filename}")
         return deserialized_dict
     except FileNotFoundError:
         print(f"Error: File '{filename}' not found.")
