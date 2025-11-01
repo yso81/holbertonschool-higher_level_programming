@@ -20,7 +20,9 @@ def serialize_to_xml(dictionary, filename):
         child.text = str(value)
 
     tree = ET.ElementTree(root)
+    ET.indent(tree, space="    ")
     tree.write(filename, encoding="utf-8", xml_declaration=True)
+
 
 def deserialize_from_xml(filename):
     """
@@ -51,5 +53,6 @@ def deserialize_from_xml(filename):
         return None
     except ET.ParseError:
         print(
-            f"Error: Could not parse XML from '{filename}'. Check file format.")
+            f"Error: Could not parse XML from '{filename}'. Check file format."
+            )
         return None
