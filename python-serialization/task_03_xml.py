@@ -1,0 +1,75 @@
+#!/usr/bin/python3
+"""
+serialization and deserialization using XML as an alternative format to JSON
+"""
+import xml.etree.ElementTree as ET
+
+
+def serialize_to_xml(dictionary, filename):
+    """
+    Serializes a Python dictionary to an XML file
+
+    Args:
+        dictionary (dict): The dictionary to serialize
+        filename (str): The name of the file to save the XML to
+    """
+    root = ET.Element("data")
+
+    for key, value in dictionary.items():
+        child = ET.SubElement(root, key)
+        child.text = str(value)
+
+    tree = ET.ElementTree(root)
+    tree.write(filename, encoding="utf-8", xml_declaration=True)
+    print(f"Dictionary serialized to {filename}")
+
+def deserialize_from_xml(filename):
+    """
+    Deserializes an XML file into a Python dictionary
+
+    Args:
+        filename (str): The name of the XML file to read from
+
+    Returns:
+        dict: The deserialized Python dictionary
+    """
+    try:
+        tree = ET.parse(filename)
+        root = tree.getroot()
+
+        deserialized_dict = {}
+        for child in root:
+            try:
+                deserialized_dict[child.tag] = int(child.text)
+            except ValueError:
+                try:
+                    deserialized_dict[child.tag] = float(child.text)
+                except ValueError:
+                    deserialized_dict[child.tag] = child.text
+        print(f"Dictionary deserialized from {filename}")
+        return deserialized_dict
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+        return None
+    except ET.ParseError:
+        print(f"Error: Could not parse XML from '{filename}'. Check file format.")
+        return None
+
+
+def main():
+    sample_dict = {
+        'name': 'John',
+        'age': '28',
+        'city': 'New York'
+    }
+
+    xml_file = "data.xml"
+    serialize_to_xml(sample_dict, xml_file)
+    print(f"Dictionary serialized to {xml_file}")
+
+    deserialized_data = deserialize_from_xml(xml_file)
+    print("\nDeserialized Data:")
+    print(deserialized_data)
+
+if __name__ == "__main__":
+    main()
