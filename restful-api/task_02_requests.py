@@ -44,7 +44,7 @@ def fetch_and_save_posts():
 
         if posts_data:
             
-            fieldnames = ['id', 'title', 'body', 'userId']
+            fieldnames = ['id', 'title', 'body']
 
             with open('posts.csv', 'w', newline='', encoding='utf-8') as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
