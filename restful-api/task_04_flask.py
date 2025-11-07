@@ -21,9 +21,9 @@ def status():
 
 @app.route('/users/<username>')
 def get_user_data(username):
-    user = users.get(username)
-    if user:
-        response_user_object = user.copy()
+    user_details = users.get(username)
+    if user_details:
+        response_user_object = user_details.copy()
         response_user_object['username'] = username
         return jsonify(response_user_object)
     else:
@@ -50,10 +50,10 @@ def add_user():
     if username in users:
         return jsonify({"error": "Username already exists"}), 409
 
-    user_details = {k: v for k, v in new_user_data.items() if k != 'username'}
-    users[username] = user_details
+    user_details_to_store = {k: v for k, v in new_user_data.items() if k != 'username'}
+    users[username] = user_details_to_store
 
-    response_user_object = user_details.copy()
+    response_user_object = user_details_to_store.copy()
     response_user_object['username'] = username
 
     return jsonify({"message": "User added successfully", "user": response_user_object}), 201
