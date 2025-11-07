@@ -33,7 +33,7 @@ def get_user_data(username):
 @app.route('/data/users', methods=['POST'])
 def add_user():
     try:
-        new_user_data = request.get_json
+        new_user_data = request.get_json(silent=True)
         if new_user_data is None:
             return jsonify({"error": "Invalid JSON"}), 400
 
