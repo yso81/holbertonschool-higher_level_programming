@@ -5,7 +5,7 @@ from flask import request
 
 app = Flask(__name__)
 
-users = {} # Initialize as an empty dictionary
+users = {}
 
 @app.route("/")
 def home():
@@ -56,7 +56,7 @@ def add_user():
     response_user_object = user_details_to_store.copy()
     response_user_object['username'] = username
 
-    return jsonify({"message": "User added successfully", "user": response_user_object}), 201
+    return jsonify({"message": "User added", "user": response_user_object}), 201
 
 
 if __name__ == '__main__':
