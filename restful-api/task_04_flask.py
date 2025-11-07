@@ -5,7 +5,7 @@ from flask import request
 
 app = Flask(__name__)
 
-users = {}
+users = {} # Initialize as an empty dictionary
 
 @app.route("/")
 def home():
@@ -23,7 +23,6 @@ def status():
 def get_user_data(username):
     user = users.get(username)
     if user:
-
         user_with_username = user.copy()
         user_with_username['username'] = username
         return jsonify(user_with_username)
@@ -51,11 +50,9 @@ def add_user():
     if username in users:
         return jsonify({"error": "Username already exists"}), 409
 
-    # Add the user
     user_details = {k: v for k, v in new_user_data.items() if k != 'username'}
     users[username] = user_details
     return jsonify({"message": "User added successfully", "user": new_user_data}), 201
-
 
 
 if __name__ == '__main__':
