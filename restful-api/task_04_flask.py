@@ -32,21 +32,28 @@ def get_user_data(username):
 
 @app.route('/data/users', methods=['POST'])
 def add_user():
-    new_user = request.json
+    try:
+        new_user_data = request.get_json
+        if new_user_data is None:
+            return jsonify({"error": "Invalid JSON"}), 400
 
-    if new_user and 'username' in new_user and new_user['username'] not in users:
+    except Exception:
+        return jsonify({"error": "Invalid JSON"}), 400
 
-        username = new_user['username']
-        user_details = {k: v for k, v in new_user.items() if k != 'username'}
-        users[username] = user_details
-        return jsonify({"message": "User added successfully", "user": new_user}), 201
-
-    elif new_user and 'username' in new_user and new_user['username'] in users:
-        return jsonify({"error": "User with this username already exists"}), 409
-        
-    else:
+    if not isinstance(new_user_data, dict):
         return jsonify({"error": "Invalid user data"}), 400
 
+    if 'username' not in new_user_data:
+        return jsonify({"error": "Username is required"}), 400
+
+    username = new_user_data['username']
+
+    if username in users:
+        return jsonify({"error": "Username already exists"}), 409
+
+    user_details = {k: v for k, v in new_user_data.items() if k != 'username'}
+    users[username] = user_details
+    return jsonify({"message": "User added successfully", "user": new_user_data}), 201
 
 
 if __name__ == '__main__':
