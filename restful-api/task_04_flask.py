@@ -23,9 +23,9 @@ def status():
 def get_user_data(username):
     user = users.get(username)
     if user:
-        user_with_username = user.copy()
-        user_with_username['username'] = username
-        return jsonify(user_with_username)
+        response_user_object = user.copy()
+        response_user_object['username'] = username
+        return jsonify(response_user_object)
     else:
         return jsonify({"error": "User not found"}), 404
 
