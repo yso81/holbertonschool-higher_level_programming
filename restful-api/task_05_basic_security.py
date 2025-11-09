@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_httpauth import HTTPBasicAuth
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager, get_jwt_identity, get_jwt
+import os
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "secret"
@@ -46,6 +47,11 @@ def handle_revoked_token_error(callback):
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(callback):
     return jsonify({"error": "Fresh token required"}), 401
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+    'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 @basic_auth.login_required
