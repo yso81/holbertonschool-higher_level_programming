@@ -15,7 +15,10 @@ if __name__ == "__main__":
     database_name = sys.argv[3]
 
     # Connect to MySQL server on localhost port 3306
-    db = MySQLdb.connect(host="localhost", port=3306, user=mysql_username, passwd=mysql_password, db=database_name)
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306, user=mysql_username, passwd=mysql_password, db=database_name
+        )
 
     c = db.cursor()
 
@@ -26,7 +29,6 @@ if __name__ == "__main__":
 
     for row in states_id:
         print(row)
-
 
     c.close()
     db.close()
