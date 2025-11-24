@@ -16,17 +16,16 @@ if __name__ == "__main__":
         port=3306,
         user=mysql_username,
         passwd=mysql_password,
-        db=database_name,
-        charset="utf8"
+        db=database_name
     )
 
     c = db.cursor()
 
     c.execute("SELECT * FROM states ORDER BY id ASC")
 
-    query_rows = c.fetchall()
+    rows = c.fetchall()
 
-    for row in query_rows:
+    for row in rows:
         print(row)
     
 
