@@ -21,9 +21,9 @@ c = db.cursor()
 
 c.execute("SELECT * FROM states ORDER BY states.id ASC")
 
-rows = c.fetchall()
+states_id = c.fetchall()
 
-for row in rows:
+for row in states_id:
     print(row)
     
 
