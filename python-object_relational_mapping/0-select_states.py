@@ -20,15 +20,15 @@ if __name__ == "__main__":
         charset="utf8"
     )
 
-    cur = db.cursor()
+    c = db.cursor()
 
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    c.execute("SELECT * FROM states ORDER BY id ASC")
 
-    query_rows = cur.fetchall()
+    query_rows = c.fetchall()
 
     for row in query_rows:
         print(row)
     
 
-    cur.close()
+    c.close()
     db.close()
