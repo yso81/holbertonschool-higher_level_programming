@@ -7,6 +7,7 @@ import sys
 
 
 if __name__ == "__main__":
+    # Connect to the MySQL server
     mysql_username = sys.argv[1]
     mysql_password = sys.argv[2]
     database_name = sys.argv[3]
@@ -21,6 +22,7 @@ if __name__ == "__main__":
 
     c = db.cursor()
 
+    # Execute the SQL query using "states.id" explicitly
     c.execute("SELECT * FROM states ORDER BY states.id ASC")
 
     states_id = c.fetchall()
