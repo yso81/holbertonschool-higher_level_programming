@@ -23,7 +23,7 @@ if __name__ == "__main__":
     c = db.cursor()
 
     # Execute the SQL query using "states.id" explicitly
-    c.execute("SELECT * FROM states ORDER BY states.id ASC")
+    c.execute("SELECT id, name FROM states ORDER BY states.id ASC")
 
     states_id = c.fetchall()
 
