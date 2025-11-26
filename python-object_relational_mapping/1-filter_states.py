@@ -21,7 +21,8 @@ if __name__ == "__main__":
     # Execute the query:
     # - WHERE name LIKE BINARY 'N%' ensures it starts with an uppercase N
     # - ORDER BY states.id ASC sorts the results
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC")
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER"
+                "BY states.id ASC")
 
     rows = cur.fetchall()
 
