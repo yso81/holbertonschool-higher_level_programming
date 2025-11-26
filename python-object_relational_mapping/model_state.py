@@ -11,7 +11,7 @@ Base = declarative_base()
 class State(Base):
     """
     State class that inherits from Base and links to the MySQL table states
-    
+
     Attributes:
         id (int): The state id. Auto-generated, unique, primary key
         name (str): The state name. String with max 128 chars, not null
