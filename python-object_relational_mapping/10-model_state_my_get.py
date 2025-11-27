@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     # Query the State object where the name matches the argument
     state = session.query(State).filter(State.name == state_name_search).\
-    first()
+        first()
 
     # Display results
     if state:
