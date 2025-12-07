@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 function factorial(n) {
   if (isNaN(n) || n === 1 || n === 0) {
     return 1;
