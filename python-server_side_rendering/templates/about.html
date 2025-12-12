@@ -1,15 +1,14 @@
-{% extends "index.html" %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>About Us</title>
+</head>
+<body>
+    {% include 'header.html' %}
 
-{% block title %}About Us - My Flask App{% endblock %}
-
-{% block content %}
     <h1>About Us</h1>
-    <p>
-        Welcome to the About Us page! We are dedicated to providing innovative solutions and exceptional service.
-        Our mission is to create user-friendly and efficient web applications.
-        We believe in quality, transparency, and continuous improvement.
-    </p>
-    <p>
-        Learn more about our team and our journey as we strive to build the future of web development, one Flask app at a time.
-    </p>
-{% endblock %}
+    <p>We are learning how to use Flask for server-side rendering.</p>
+
+    {% include 'footer.html' %}
+</body>
+</html>
