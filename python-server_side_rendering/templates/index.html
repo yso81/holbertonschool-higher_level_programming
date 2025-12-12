@@ -1,15 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Flask App{% endblock %}</title>
+    <title>My Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     {% include 'header.html' %}
 
     <main class="page-content">
-        {% block content %}{% endblock %}
+        <h1>Welcome to My Flask App</h1>
+        <p>This is a simple Flask application.</p>
+        <ul>
+            <li>Flask</li>
+            <li>HTML</li>
+            <li>Templates</li>
+        </ul>
     </main>
 
     {% include 'footer.html' %}
