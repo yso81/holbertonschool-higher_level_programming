@@ -1,25 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask App - About Us</title>
-</head>
-<body>
-    {% include 'header.html' %}
+{% extends "index.html" %}
 
-    <main class="page-content">
-        <h1>About Us</h1>
-        <p>
-            Welcome to the About Us page! We are dedicated to providing innovative solutions and exceptional service.
-            Our mission is to create user-friendly and efficient web applications.
-            We believe in quality, transparency, and continuous improvement.
-        </p>
-        <p>
-            Learn more about our team and our journey as we strive to build the future of web development, one Flask app at a time.
-        </p>
-    </main>
+{% block title %}About Us - My Flask App{% endblock %}
 
-    {% include 'footer.html' %}
-</body>
-</html>
+{% block content %}
+    <h1>About Us</h1>
+    <p>
+        Welcome to the About Us page! We are dedicated to providing innovative solutions and exceptional service.
+        Our mission is to create user-friendly and efficient web applications.
+        We believe in quality, transparency, and continuous improvement.
+    </p>
+    <p>
+        Learn more about our team and our journey as we strive to build the future of web development, one Flask app at a time.
+    </p>
+{% endblock %}
