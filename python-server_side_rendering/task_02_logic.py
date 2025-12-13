@@ -1,5 +1,5 @@
-from flask import Flask, render_template
 import json
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -16,25 +16,16 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/items')
-def items_index():
-    with open('items.json') as f:
-        data = json.load(f)
-    # Pass the whole dictionary as 'all_lists'
-    return render_template('items.html', all_lists=data)
-
-# Show a SPECIFIC list
-@app.route('/items/<category>')
-def items_category(category):
+def items():
+    # Open and load the JSON file
     with open('items.json') as f:
         data = json.load(f)
     
-    selected_items = data.get(category)
-    
-    if selected_items is None:
-        return f"Category '{category}' not found.", 404
+    # Choose which list to display
+    current_list = data['list_1'] 
 
-    # Pass specific list as 'items'
-    return render_template('items.html', items=selected_items, title=category)
+    # Pass the list to the template using the variable name 'items'
+    return render_template('items.html', items=current_list)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
