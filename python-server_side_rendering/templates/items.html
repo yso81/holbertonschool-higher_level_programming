@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body>
+
+    <!-- SCENARIO 1: View ALL Lists -->
+    {% if all_lists %}
+        <h1>All Items Inventory</h1>
+        <p>Click a category to view details:</p>
+        
+        {% for category_name, item_list in all_lists.items() %}
+            <!-- Create a link to the specific category page -->
+            <h2><a href="/items/{{ category_name }}">{{ category_name }}</a></h2>
+            
+            <!-- Optional: Preview the items here too -->
+            {% if item_list %}
+                <ul>
+                    {% for item in item_list %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No items found.</p>
+            {% endif %}
+            <hr>
+        {% endfor %}
+
+    <!-- SCENARIO 2: View SINGLE List -->
+    {% else %}
+        <h1>Category: {{ title }}</h1>
+        
+        {% if items %}
+            <ul>
+                {% for item in items %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No items found in this category.</p>
+        {% endif %}
+
+        <br>
+        <a href="/items">← Back to All Lists</a>
+    {% endif %}
+
+</body>
+</html>
