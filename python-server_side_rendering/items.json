@@ -1,5 +1,3 @@
 {
-    "list_1": ["Python Book", "Flask Mug", "Jinja Sticker"],
-    "list_2": ["Mangoes", "Berries", "Pawpaws", "Watermelons"],
-    "empty_list": []
+    "items": ["Python Book", "Flask Mug", "Jinja Sticker"]
 }
