@@ -2,11 +2,53 @@ import sqlite3
 from flask import Flask, render_template, request
 import csv
 import json
+import os
 
 app = Flask(__name__)
 
-def create_database():
-    conn = sqlite3.connect('products.db')
+JSON_FILE = 'products.json'
+CSV_FILE = 'products.csv'
+DB_FILE = 'products.db'
+
+def get_product_data_from_json():
+    """Reads product data from the JSON file."""
+    if not os.path.exists(JSON_FILE):
+        return []
+    try:
+        with open(JSON_FILE, 'r') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"Error reading JSON file: {e}")
+        return []
+
+def get_product_data_from_csv():
+    """Reads product data from the CSV file."""
+    if not os.path.exists(CSV_FILE):
+        return []
+    try:
+        products = []
+        with open(CSV_FILE, 'r', newline='') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                try:
+                    row['id'] = int(row['id'])
+                    row['price'] = float(row['price'])
+                    products.append(row)
+                except (ValueError, KeyError) as e:
+                    print(f"Error parsing CSV row: {row} - {e}")
+        return products
+    except FileNotFoundError:
+        return []
+    except Exception as e:
+        print(f"Error reading CSV file: {e}")
+        return []
+
+def initialize_database(initial_data):
+    """
+    Creates the database table and inserts data if not present.
+    It takes a list of products to initially populate the DB.
+    """
+    conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Products (
@@ -16,32 +58,38 @@ def create_database():
             price REAL NOT NULL
         )
     ''')
-    cursor.execute("SELECT COUNT(*) FROM Products WHERE id IN (1, 2, 3)")
-    if cursor.fetchone()[0] == 0:
-        cursor.execute('''
-            INSERT INTO Products (id, name, category, price)
-            VALUES
-            (1, 'Laptop', 'Electronics', 799.99),
-            (2, 'Coffee Mug', 'Home Goods', 15.99),
-            (3, 'Jarvis', 'Electronics', 1299.99)
-        ''')
-        conn.commit()
+
+    existing_ids = set()
+    cursor.execute("SELECT id FROM Products")
+    for row in cursor.fetchall():
+        existing_ids.add(row[0])
+
+    for product in initial_data:
+        if product['id'] not in existing_ids:
+            try:
+                cursor.execute("INSERT OR IGNORE INTO Products (id, name, category, price) VALUES (?, ?, ?, ?)",
+                               (product['id'], product['name'], product['category'], product['price']))
+            except KeyError as e:
+                print(f"Skipping product due to missing key: {product} - {e}")
+
+    conn.commit()
     conn.close()
 
 def get_products_from_db():
+    """Fetches all products from the SQLite database."""
     try:
-        conn = sqlite3.connect('products.db')
+        conn = sqlite3.connect(DB_FILE)
+        conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
         cursor.execute("SELECT id, name, category, price FROM Products")
-        products = []
-        for row in cursor.fetchall():
-            products.append({"id": row[0], "name": row[1], "category": row[2], "price": row[3]})
+        products = [dict(row) for row in cursor.fetchall()]
         conn.close()
         return products
     except sqlite3.Error as e:
         print(f"Database error: {e}")
         return None
 
+# --- Flask Routes ---
 @app.route('/products')
 def products():
     source = request.args.get('source')
@@ -49,25 +97,13 @@ def products():
     error = None
 
     if source == 'json':
-        try:
-            with open('products.json', 'r') as f:
-                data = json.load(f)
-        except FileNotFoundError:
-            error = "JSON file not found."
-        except json.JSONDecodeError:
-            error = "Error decoding JSON."
+        data = get_product_data_from_json()
+        if not data:
+            error = "JSON data not found."
     elif source == 'csv':
-        try:
-            with open('products.csv', 'r') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    row['id'] = int(row['id'])
-                    row['price'] = float(row['price'])
-                    data.append(row)
-        except FileNotFoundError:
-            error = "CSV file not found."
-        except Exception as e:
-            error = f"Error reading CSV: {e}"
+        data = get_product_data_from_csv()
+        if not data: 
+            error = "CSV data not found."
     elif source == 'sql':
         data = get_products_from_db()
         if data is None:
@@ -78,18 +114,22 @@ def products():
     return render_template('product_display.html', products=data, error=error)
 
 if __name__ == '__main__':
-    create_database()
-    with open('products.json', 'w') as f:
-        json.dump([
+    initial_product_seed = get_product_data_from_json()
+
+    if not initial_product_seed:
+        initial_product_seed = [
             {"id": 1, "name": "Laptop", "category": "Electronics", "price": 799.99},
-            {"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99},
-            {"id": 3, "name": "Jarvis", "category": "Electronics", "price": 1299.99}
-        ], f)
-    with open('products.csv', 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow(['id', 'name', 'category', 'price'])
-        writer.writerow([1, 'Laptop', 'Electronics', 799.99])
-        writer.writerow([2, 'Coffee Mug', 'Home Goods', 15.99])
-        writer.writerow([3, 'Jarvis', 'Electronics', 1299.99])
+            {"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99}
+        ]
+        with open(JSON_FILE, 'w') as f:
+            json.dump(initial_product_seed, f, indent=4)
+        with open(CSV_FILE, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=['id', 'name', 'category', 'price'])
+            writer.writeheader()
+            writer.writerows(initial_product_seed)
+
+
+    initialize_database(initial_product_seed)
+
 
     app.run(debug=True)
