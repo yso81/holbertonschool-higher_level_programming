@@ -16,13 +16,14 @@ def create_database():
             price REAL NOT NULL
         )
     ''')
-    cursor.execute("SELECT COUNT(*) FROM Products WHERE id IN (1, 2)")
+    cursor.execute("SELECT COUNT(*) FROM Products WHERE id IN (1, 2, 3)")
     if cursor.fetchone()[0] == 0:
         cursor.execute('''
             INSERT INTO Products (id, name, category, price)
             VALUES
             (1, 'Laptop', 'Electronics', 799.99),
-            (2, 'Coffee Mug', 'Home Goods', 15.99)
+            (2, 'Coffee Mug', 'Home Goods', 15.99),
+            (3, 'Jarvis', 'Electronics', 1299.99)
         ''')
         conn.commit()
     conn.close()
@@ -81,12 +82,14 @@ if __name__ == '__main__':
     with open('products.json', 'w') as f:
         json.dump([
             {"id": 1, "name": "Laptop", "category": "Electronics", "price": 799.99},
-            {"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99}
+            {"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99},
+            {"id": 3, "name": "Jarvis", "category": "Electronics", "price": 1299.99}
         ], f)
     with open('products.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['id', 'name', 'category', 'price'])
         writer.writerow([1, 'Laptop', 'Electronics', 799.99])
         writer.writerow([2, 'Coffee Mug', 'Home Goods', 15.99])
+        writer.writerow([3, 'Jarvis', 'Electronics', 1299.99])
 
     app.run(debug=True)
