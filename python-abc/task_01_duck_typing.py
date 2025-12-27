@@ -29,7 +29,7 @@ class Circle(Shape):
     """
     def __init__(self, radius):
         if radius <= 0:
-            raise ValueError("Error must be positive")
+            raise ValueError("Error! Must be positive")
         self.radius = radius
 
     def area(self):
